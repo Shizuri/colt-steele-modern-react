@@ -1,0 +1,11 @@
+.Pokedex {
+    background: lightyellow;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.Pokedex-Pokecard {
+    list-style: none;
+    display: inline-block;
+}
