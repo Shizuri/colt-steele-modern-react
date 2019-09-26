@@ -25,7 +25,7 @@ class Pokegame extends Component {
         }
         // console.log('Hand 1: ', hand1);
         // console.log('Hand 2: ', hand2);
-        let sum1 = hand1.forEach(this.printValue);
+        let sum1 = hand1.reduce((a, b) => ({base_experience: a.base_experience + b.base_experience}));
         console.log(sum1);
 
         return (
@@ -34,10 +34,6 @@ class Pokegame extends Component {
                 hand2: hand2
             }
         );
-    }
-
-    printValue(value) {
-        return value.base_experience;
     }
 
     render() {
