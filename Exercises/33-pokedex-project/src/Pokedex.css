@@ -9,3 +9,15 @@
     list-style: none;
     display: inline-block;
 }
+
+.Pokedex-winner {
+    color: purple;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.Pokedex-loser {
+    color: green;
+    font-size: 50px;
+    font-weight: 700;
+}

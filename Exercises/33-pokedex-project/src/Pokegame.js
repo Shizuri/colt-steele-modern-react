@@ -25,31 +25,46 @@ class Pokegame extends Component {
         }
         // console.log('Hand 1: ', hand1);
         // console.log('Hand 2: ', hand2);
-        let sum1 = hand1.reduce((a, b) => ({base_experience: a.base_experience + b.base_experience}));
-        console.log(sum1);
+        let sum1 = hand1.reduce((a, b) => ({base_experience: a.base_experience + b.base_experience})).base_experience;
+        let sum2 = hand2.reduce((a, b) => ({base_experience: a.base_experience + b.base_experience})).base_experience;
+        // console.log(sum1);
+        // console.log(sum2);
+
+        let winner1 = false;
+        let winner2 = false;
+        if(sum1 >= sum2){
+            winner1 = true;
+        } else {
+            winner2 = true;
+        }
 
         return (
             {
                 hand1: hand1,
-                hand2: hand2
+                hand2: hand2,
+                sum1: sum1,
+                sum2: sum2,
+                winner1: winner1,
+                winner2: winner2
             }
         );
     }
 
     render() {
-        const { hand1, hand2 } = this.makeTwoHands();
+        const { hand1, hand2, sum1, sum2, winner1, winner2 } = this.makeTwoHands();
         // console.log('Hand 1: ', hand1);
         // console.log('Hand 2: ', hand2);
-        const st = {
+        // console.log(sum1);
+        const style = {
             textAlign: 'center',
             color: 'darkred'
         }
 
         return (
             <div>
-                <h1 style={st}>Pokegame</h1>
-                <Pokedex2 pokecards={hand1} />
-                <Pokedex2 pokecards={hand2} />
+                <h1 style={style}>Pokegame</h1>
+                <Pokedex2 pokecards={hand1} sum={sum1} isWinner={winner1}/>
+                <Pokedex2 pokecards={hand2} sum={sum2} isWinner={winner2}/>
             </div>
         );
     }
