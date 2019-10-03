@@ -1,0 +1,23 @@
+.RollDice-button {
+    display: block;
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 0;
+}
+
+.RollDice-button:hover {
+    display: block;
+    margin: 0 auto;
+    background-color: royalblue;
+    color: white;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 0;
+}
