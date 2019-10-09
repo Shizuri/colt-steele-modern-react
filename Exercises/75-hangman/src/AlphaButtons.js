@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class AlphaButtons extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleGuess = this.handleGuess.bind(this);
-        this.handleGuessedLetter = this.handleGuessedLetter.bind(this);
-    }
-
     handleGuess(ltr) {
         return this.props.guess(ltr);
     }

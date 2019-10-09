@@ -11,7 +11,6 @@ import { randomWord } from './words';
 import AlphaButtons from './AlphaButtons';
 
 class HangmanAdvanced extends Component {
-  /** by default, allow 6 guesses and use provided gallows images. */
   static defaultProps = {
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
@@ -22,23 +21,15 @@ class HangmanAdvanced extends Component {
     this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
     this.guess = this.guess.bind(this);
     this.restartHandler = this.restartHandler.bind(this);
-    this.won = this.won.bind(this);
     this.guessedLetter = this.guessedLetter.bind(this);
   }
 
-  /** guessedWord: show current-state of word:
-    if guessed letters are {a,p,e}, show "app_e" for "apple"
-  */
   guessedWord() {
     return this.state.answer
       .split("")
       .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_"));
   }
 
-  /** handleGuest: handle a guessed letter:
-    - add to guessed letters
-    - if not in answer, increase number-wrong guesses
-  */
   guess(letter) {
     let ltr = letter;
     this.setState(st => ({
@@ -46,20 +37,6 @@ class HangmanAdvanced extends Component {
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
   }
-
-  /** generateButtons: return array of letter buttons to render */
-  // generateButtons() {
-  //   return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
-  //     <button
-  //       value={ltr}
-  //       onClick={this.handleGuess}
-  //       disabled={this.state.guessed.has(ltr)}
-  //       key={ltr}
-  //     >
-  //       {ltr}
-  //     </button>
-  //   ));
-  // }
 
   restart() {
     this.setState({ nWrong: 0, guessed: new Set(), answer: randomWord() });
@@ -81,7 +58,6 @@ class HangmanAdvanced extends Component {
     return this.state.guessed.has(ltr);
   }
 
-  /** render: render game */
   render() {
     let buttonsLostWon = <p className='Hangman-btns'><AlphaButtons letters='abcdefghijklmnopqrstuvwxyz' guess={this.guess} guessedLetter={this.guessedLetter} /></p>;
     if (this.state.nWrong >= this.props.maxWrong) {
