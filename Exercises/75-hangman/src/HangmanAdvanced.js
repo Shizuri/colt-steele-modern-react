@@ -39,8 +39,8 @@ class HangmanAdvanced extends Component {
     - add to guessed letters
     - if not in answer, increase number-wrong guesses
   */
-  guess(evt) {
-    let ltr = evt.target.value;
+  guess(letter) {
+    let ltr = letter;
     this.setState(st => ({
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
@@ -83,7 +83,7 @@ class HangmanAdvanced extends Component {
 
   /** render: render game */
   render() {
-    let buttonsLostWon = <p className='Hangman-btns'><AlphaButtons letters='abcdefghijklmnopqrstuvwxyz' guess={this.guess} guessedLetter={this.guessedLetter}/></p>;
+    let buttonsLostWon = <p className='Hangman-btns'><AlphaButtons letters='abcdefghijklmnopqrstuvwxyz' guess={this.guess} guessedLetter={this.guessedLetter} /></p>;
     if (this.state.nWrong >= this.props.maxWrong) {
       buttonsLostWon = <p>You lose, the correct word was: {this.state.answer.toUpperCase()}</p>
     }
