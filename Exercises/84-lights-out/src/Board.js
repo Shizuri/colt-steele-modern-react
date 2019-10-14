@@ -44,6 +44,7 @@ class Board extends Component {
       hasWon: false,
       board: this.createBoard()
     }
+    this.flipCellsAround = this.flipCellsAround.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -81,12 +82,33 @@ class Board extends Component {
 
     // TODO: flip this cell and the cells around it
 
+    function flipNeighbourCells(y, x) {
+      if (x - 1 >= 0 && x - 1 < ncols && y >= 0 && y < nrows) {
+        board[y][x - 1] = !board[y][x - 1];
+      }
+      if (x + 1 >= 0 && x + 1 < ncols && y >= 0 && y < nrows) {
+        board[y][x + 1] = !board[y][x + 1];
+      }
+      if (x >= 0 && x < ncols && y - 1 >= 0 && y - 1 < nrows) {
+        board[y - 1][x] = !board[y - 1][x];
+      }
+      if (x >= 0 && x < ncols && y + 1 >= 0 && y + 1 < nrows) {
+        board[y + 1][x] = !board[y + 1][x];
+      }
+    }
+
+    flipCell(y, x);
+    flipNeighbourCells(y, x);
     // win when every cell is turned off
     // TODO: determine is the game has been won
+    // let hasWon = false;
+    const hasWon = this.state.board
+      .map(arr => arr
+        .every(innerArrItem => innerArrItem === false))
+      .every(outerItem => outerItem === true);
 
-    // this.setState({ board, hasWon });//I need this
+    this.setState({ board, hasWon });//I need this
   }
-
 
   /** Render game board or winning message. */
 
@@ -99,23 +121,28 @@ class Board extends Component {
     // make table board
 
     // TODO
-    let boardElements = this.state.board.map(item => item.map(value => <Cell isLit={value} />));
-    console.log('boardElements: ', boardElements);
-  
+    let boardElements = this.state.board.map((item, index1) => {
+      return (
+        <tr>
+          {item.map((value, index2) =>
+            <Cell
+              isLit={value}
+              flipCellsAroundMe={() => this.flipCellsAround(index1 + '-' + index2)}
+            />)}
+        </tr>
+      );
+    });
+
+    const boardElementsTable =
+      <table>
+        <tbody>
+          {boardElements}
+        </tbody>
+      </table>
 
     return (
       <div>
-        <table>
-          <tbody>
-            <tr>
-              {/* {this.state.board.map((cell) => {
-                console.log(`isLit?: ${cell}`)
-                return (<Cell isLit={cell} />)
-              })} */}
-              {boardElements}
-            </tr>
-          </tbody>
-        </table>
+        {this.state.hasWon ? 'You WIN!' : boardElementsTable}
       </div>
     );
   }
