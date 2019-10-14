@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Cell from "./Cell";
 import './Board.css';
 
@@ -30,11 +30,20 @@ import './Board.css';
  **/
 
 class Board extends Component {
+  static defaultProps = {
+    nrows: 5,
+    ncols: 5,
+    chanceLightStartsOn: 0.1
+  }
 
   constructor(props) {
     super(props);
 
     // TODO: set initial state
+    this.state = {
+      hasWon: false,
+      board: this.createBoard()
+    }
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -42,13 +51,22 @@ class Board extends Component {
   createBoard() {
     let board = [];
     // TODO: create array-of-arrays of true/false values
+    let { nrows, ncols, chanceLightStartsOn } = this.props;
+    for (let i = 0; i < nrows; i++) {
+      let arr = [];
+      for (let j = 0; j < ncols; j++) {
+        let rand = Math.random() < chanceLightStartsOn ? true : false;
+        arr.push(rand);
+      }
+      board.push(arr);
+    }
     return board
   }
 
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
-    let {ncols, nrows} = this.props;
+    let { ncols, nrows } = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
 
@@ -66,7 +84,7 @@ class Board extends Component {
     // win when every cell is turned off
     // TODO: determine is the game has been won
 
-    this.setState({board, hasWon});
+    // this.setState({ board, hasWon });//I need this
   }
 
 
@@ -81,6 +99,25 @@ class Board extends Component {
     // make table board
 
     // TODO
+    let boardElements = this.state.board.map(item => item.map(value => <Cell isLit={value} />));
+    console.log('boardElements: ', boardElements);
+  
+
+    return (
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              {/* {this.state.board.map((cell) => {
+                console.log(`isLit?: ${cell}`)
+                return (<Cell isLit={cell} />)
+              })} */}
+              {boardElements}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
