@@ -14,8 +14,9 @@ class TodoList extends Component {
         this.removeTodoHandler = this.removeTodoHandler.bind(this);
         this.editTodoHandler = this.editTodoHandler.bind(this);
         this.updateHandler = this.updateHandler.bind(this);
+        // this.finishedHandler = this.finishedHandler.bind(this);
     }
-    
+
     addTodoHandler(msg) {
         this.setState(prevState => ({
             messages: [...prevState.messages, <Todo
@@ -24,6 +25,7 @@ class TodoList extends Component {
                 id={msg.id}
                 removeTodo={this.removeTodoHandler}
                 editTodo={this.editTodoHandler}
+                finished={this.finishedHandler}
             />]
         }));
     }
@@ -50,6 +52,7 @@ class TodoList extends Component {
             id={updatedValue.id}
             removeTodo={this.removeTodoHandler}
             editTodo={this.editTodoHandler}
+            finished={this.finishedHandler}
         />
 
         this.setState(prevState => {
@@ -58,6 +61,10 @@ class TodoList extends Component {
             return ({ messages: newMessages })
         });
     }
+
+    // finishedHandler(event) {
+    //     console.log('finished ', event);
+    // }
 
     render() {
         return (
