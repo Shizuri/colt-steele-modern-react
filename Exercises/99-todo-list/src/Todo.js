@@ -5,6 +5,7 @@ class Todo extends Component {
         return(
             <div>
                 <span>{this.props.message}</span>
+                <button onClick={() => this.props.editTodo(this.props.id)}>edit</button>
                 <button onClick={() => this.props.removeTodo(this.props.id)}>X</button>
             </div>
         );
