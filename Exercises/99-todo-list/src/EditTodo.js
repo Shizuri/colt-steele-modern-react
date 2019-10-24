@@ -5,7 +5,8 @@ class EditTodo extends Component {
         super(props);
         this.state = {
             message: '',
-            id: this.props.id
+            id: this.props.id,
+            finished: this.props.finished
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +23,8 @@ class EditTodo extends Component {
         this.props.update(this.state);
         this.setState({
             message: '',
-            id: ''
+            id: '',
+            finished: ''
         })
     }
 

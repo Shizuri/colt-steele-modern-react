@@ -14,7 +14,7 @@ class TodoList extends Component {
         this.removeTodoHandler = this.removeTodoHandler.bind(this);
         this.editTodoHandler = this.editTodoHandler.bind(this);
         this.updateHandler = this.updateHandler.bind(this);
-        // this.finishedHandler = this.finishedHandler.bind(this);
+        this.finishHandler = this.finishHandler.bind(this);
     }
 
     addTodoHandler(msg) {
@@ -25,7 +25,8 @@ class TodoList extends Component {
                 id={msg.id}
                 removeTodo={this.removeTodoHandler}
                 editTodo={this.editTodoHandler}
-                // finished={this.finishedHandler}
+                finished={false}
+                finish={this.finishHandler}
             />]
         }));
     }
@@ -36,10 +37,11 @@ class TodoList extends Component {
 
     editTodoHandler(id) {
         const index = this.state.messages.findIndex(element => element.props.id === id);
+        const todo = this.state.messages.filter(element => element.props.id === id)[0];
 
         this.setState(prevState => {
             let newMessages = [...prevState.messages];
-            newMessages.splice(index, 1, <EditTodo key={id} update={this.updateHandler} id={id} />);
+            newMessages.splice(index, 1, <EditTodo key={id} update={this.updateHandler} id={id} finished={todo.props.finished} />);
             return ({ messages: newMessages })
         });
     }
@@ -52,7 +54,8 @@ class TodoList extends Component {
             id={updatedValue.id}
             removeTodo={this.removeTodoHandler}
             editTodo={this.editTodoHandler}
-            // finished={this.finishedHandler}
+            finished={updatedValue.finished}
+            finish={this.finishHandler}
         />
 
         this.setState(prevState => {
@@ -62,9 +65,26 @@ class TodoList extends Component {
         });
     }
 
-    // finishedHandler(event) {
-    //     console.log('finished ', event);
-    // }
+    finishHandler(id) {
+        const index = this.state.messages.findIndex(element => element.props.id === id);
+        const todo = this.state.messages.filter(element => element.props.id === id)[0];
+
+        const updatedTodo = <Todo
+            message={todo.props.message}
+            key={todo.props.id}
+            id={todo.props.id}
+            removeTodo={this.removeTodoHandler}
+            editTodo={this.editTodoHandler}
+            finished={!todo.props.finished}
+            finish={this.finishHandler}
+        />
+
+        this.setState(prevState => {
+            let newMessages = [...prevState.messages];
+            newMessages.splice(index, 1, updatedTodo);
+            return ({ messages: newMessages })
+        });
+    }
 
     render() {
         return (
