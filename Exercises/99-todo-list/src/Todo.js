@@ -9,10 +9,12 @@ class Todo extends Component {
         this.finish = this.finish.bind(this);
     }
 
-    finish() { //problem seams to be here. style doesn't initialize properly it seams.
-        const finished = this.state.finished;
-        this.setState(prevState => ({finished: !prevState.finished}));
-        if(finished){
+    finish() {
+        this.setState(prevState => ({ finished: !prevState.finished }));
+    }
+
+    getFinishedStyle() {
+        if (this.state.finished) {
             return ({ textDecoration: 'line-through' });
         } else {
             return ({ textDecoration: 'none' });
@@ -22,7 +24,7 @@ class Todo extends Component {
     render() {
         return (
             <div>
-                <span style={this.finish} onClick={this.finish}>{this.props.message}</span>
+                <span style={this.getFinishedStyle()} onClick={this.finish}>{this.props.message}</span>
                 <button onClick={() => this.props.editTodo(this.props.id)}>edit</button>
                 <button onClick={() => this.props.removeTodo(this.props.id)}>X</button>
             </div>

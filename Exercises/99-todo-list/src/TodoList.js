@@ -25,7 +25,7 @@ class TodoList extends Component {
                 id={msg.id}
                 removeTodo={this.removeTodoHandler}
                 editTodo={this.editTodoHandler}
-                finished={this.finishedHandler}
+                // finished={this.finishedHandler}
             />]
         }));
     }
@@ -52,7 +52,7 @@ class TodoList extends Component {
             id={updatedValue.id}
             removeTodo={this.removeTodoHandler}
             editTodo={this.editTodoHandler}
-            finished={this.finishedHandler}
+            // finished={this.finishedHandler}
         />
 
         this.setState(prevState => {
