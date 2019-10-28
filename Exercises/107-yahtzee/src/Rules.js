@@ -73,6 +73,7 @@ class SmallStraight extends Rule {
       || (d.has(3) && d.has(4) && d.has(5) && d.has(6))
     ) ? this.score : 0;
   };
+  // FINISHED
 }
 
 /** Check for large straights. */
