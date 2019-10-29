@@ -62,6 +62,7 @@ class FullHouse extends Rule {
   evalRoll = dice => {
     return (this.freq(dice)[0] === 2 && this.freq(dice)[1] === 3) || (this.freq(dice)[0] === 3 && this.freq(dice)[1] === 2) ? this.score : 0;
   };
+  // FINISHED
 }
 
 /** Check for small straights. */
