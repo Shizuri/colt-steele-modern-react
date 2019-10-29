@@ -18,6 +18,7 @@ class Die extends Component {
         className={"Die"}
         style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
         onClick={this.handleClickHandler}
+        disabled={this.props.rollsLeft === 0}
       >
         {this.props.val}
       </button>
