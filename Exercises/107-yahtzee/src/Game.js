@@ -85,7 +85,25 @@ class Game extends Component {
   }
 
   isTheGameOver() {
-    return !Object.values(this.state.scores).includes(undefined);
+    const isOver = !Object.values(this.state.scores).includes(undefined);
+    if (isOver) {
+      const highScore = localStorage.getItem('YahtzeeHighScore');
+      if (this.getCurrentScore() > highScore) {
+        localStorage.setItem('YahtzeeHighScore', this.getCurrentScore());
+      }
+    }
+    return isOver;
+  }
+
+  getCurrentScore() {
+    const scores = this.state.scores;
+    const vals = Object.values(scores).filter(val => val !== undefined);
+    let currentScore = 0;
+    if (vals.length > 0) {
+      currentScore = vals.reduce((accumulator, currentValue) => accumulator + currentValue);
+    }
+
+    return currentScore;
   }
 
   newGame() {

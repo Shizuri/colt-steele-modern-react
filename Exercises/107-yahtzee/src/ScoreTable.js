@@ -47,7 +47,7 @@ class ScoreTable extends Component {
               <RuleRow name="Chance" score={scores.chance} doScore={evt => doScore("chance", chance.evalRoll)} />
             </tbody>
           </table>
-          <h2>Current Score: {this.getCurrentScore()}</h2>
+          <h2>Current Score: {this.getCurrentScore()} | HIGH SCORE: {localStorage.getItem('YahtzeeHighScore')}</h2>
         </section>
       </div>
     )
