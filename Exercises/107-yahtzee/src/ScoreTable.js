@@ -5,6 +5,16 @@ import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullH
 
 
 class ScoreTable extends Component {
+  getCurrentScore() {
+    const { scores } = this.props;
+    const vals = Object.values(scores).filter(val => val !== undefined);
+    let currentScore = 0;
+    if (vals.length > 0) {
+      currentScore = vals.reduce((accumulator, currentValue) => accumulator + currentValue);
+    }
+
+    return currentScore;
+  }
 
   render() {
     const { scores, doScore } = this.props;
@@ -37,6 +47,7 @@ class ScoreTable extends Component {
               <RuleRow name="Chance" score={scores.chance} doScore={evt => doScore("chance", chance.evalRoll)} />
             </tbody>
           </table>
+          <h2>Current Score: {this.getCurrentScore()}</h2>
         </section>
       </div>
     )

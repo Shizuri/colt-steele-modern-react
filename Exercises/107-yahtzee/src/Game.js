@@ -36,6 +36,10 @@ class Game extends Component {
     this.shakeDice = this.shakeDice.bind(this);
   }
 
+  componentDidMount() {
+    this.shakeDice();
+  }
+
   shakeDice() {
     this.setState(st => ({
       shaking: true

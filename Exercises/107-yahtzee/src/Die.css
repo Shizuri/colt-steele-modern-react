@@ -24,7 +24,7 @@
   text-shadow: none;
 }
 
-.Die:not(.Die-locked, .Die-rolling):hover {
+.Die:not(.Die-locked):hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -34,7 +34,7 @@
 }
 
 .Die-rolling:hover, .Die[disabled] {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 @keyframes spin {
