@@ -34,6 +34,8 @@ class Game extends Component {
     this.doScore = this.doScore.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
     this.shakeDice = this.shakeDice.bind(this);
+    this.isTheGameOver = this.isTheGameOver.bind(this);
+    this.newGame = this.newGame.bind(this);
   }
 
   componentDidMount() {
@@ -82,6 +84,35 @@ class Game extends Component {
     this.roll();
   }
 
+  isTheGameOver() {
+    return !Object.values(this.state.scores).includes(undefined);
+  }
+
+  newGame() {
+    this.setState({
+      dice: Array.from({ length: NUM_DICE }),
+      locked: Array(NUM_DICE).fill(false),
+      rollsLeft: NUM_ROLLS,
+      shaking: false,
+      scores: {
+        ones: undefined,
+        twos: undefined,
+        threes: undefined,
+        fours: undefined,
+        fives: undefined,
+        sixes: undefined,
+        threeOfKind: undefined,
+        fourOfKind: undefined,
+        fullHouse: undefined,
+        smallStraight: undefined,
+        largeStraight: undefined,
+        yahtzee: undefined,
+        chance: undefined
+      }
+    })
+    this.shakeDice();
+  }
+
   render() {
     return (
       <div className='Game'>
@@ -97,13 +128,23 @@ class Game extends Component {
               shaking={this.state.shaking}
             />
             <div className='Game-button-wrapper'>
-              <button
-                className='Game-reroll'
-                disabled={this.state.locked.every(x => x)}
-                onClick={this.shakeDice}
-              >
-                {this.state.rollsLeft} Rerolls Left
+              {
+                this.isTheGameOver() ?
+                  <button
+                    className='Game-reroll'
+                    onClick={this.newGame}
+                  >
+                    Play again?
+                  </button>
+                  :
+                  <button
+                    className='Game-reroll'
+                    disabled={this.state.locked.every(x => x)}
+                    onClick={this.shakeDice}
+                  >
+                    {this.state.rollsLeft} Rerolls Left
               </button>
+              }
             </div>
           </section>
         </header>
