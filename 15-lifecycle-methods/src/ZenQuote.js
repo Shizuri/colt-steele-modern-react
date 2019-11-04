@@ -9,6 +9,7 @@ class ZenQuote extends Component {
             quote: 'placeholder',
             isLoaded: false
         }
+        console.log('Insite constructor()');
     }
     componentDidMount() {
         //load data
@@ -20,8 +21,13 @@ class ZenQuote extends Component {
             );
         });
         //set state with that data
+        console.log('Insite componentDidMount()');
+    }
+    componentDidUpdate() {
+        console.log('Insite componentDidUpdate()');
     }
     render() {
+        console.log('Insite render()');
         return (
             <div>
                 {this.state.isLoaded ?
