@@ -6,7 +6,8 @@ class DadJokeManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokes: []
+            jokes: [],
+            loaded: false
         }
         this.getJoke = this.getJoke.bind(this);
         this.getTenJokes = this.getTenJokes.bind(this);
@@ -15,10 +16,12 @@ class DadJokeManager extends Component {
     }
 
     componentDidMount() {
-
+        if (this.state.jokes.length === 0) {
+            this.getTenJokes();
+        }
     }
 
-    async getJoke() {
+    async getJoke(iteration) {
         const options = { headers: { Accept: 'application/json' } };
         const url = 'https://icanhazdadjoke.com/';
         const response = await axios.get(url, options);
@@ -29,26 +32,31 @@ class DadJokeManager extends Component {
             points: 0
         };
         const same = this.state.jokes.some(j => j.id === id);
-        if (!same) {
+        if (!same && iteration !== 9) {
             this.setState(st => ({
                 jokes: [...st.jokes, newJoke]
             }));
+        } else if (!same && iteration === 9) {
+            this.setState(st => ({
+                jokes: [...st.jokes, newJoke],
+                loaded: true
+            }));
         } else {
-            this.getJoke();
+            this.getJoke(iteration);
         }
-
     }
 
     getTenJokes() {
+        this.setState({loaded: false});
         for (let i = 0; i < 10; i++) {
-            this.getJoke();
+            this.getJoke(i);
         }
     }
 
     upVote(jokeId) {
-        this.setState(st =>({
+        this.setState(st => ({
             jokes: st.jokes.map(joke => {
-                if(joke.id === jokeId){
+                if (joke.id === jokeId) {
                     joke.points = joke.points + 1;
                     return joke;
                 } else {
@@ -59,9 +67,9 @@ class DadJokeManager extends Component {
     }
 
     downVote(jokeId) {
-        this.setState(st =>({
+        this.setState(st => ({
             jokes: st.jokes.map(joke => {
-                if(joke.id === jokeId){
+                if (joke.id === jokeId) {
                     joke.points = joke.points - 1;
                     return joke;
                 } else {
@@ -74,15 +82,19 @@ class DadJokeManager extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.getTenJokes}>Add joke</button>
-                {this.state.jokes.map(j => <Joke
-                    points={j.points}
-                    joke={j.joke}
-                    key={j.id}
-                    id={j.id}
-                    upVote={this.upVote}
-                    downVote={this.downVote}
-                />)}
+                <button onClick={this.getTenJokes}>Add more jokes</button>
+                {this.state.loaded ?
+                    this.state.jokes.map(j => <Joke
+                        points={j.points}
+                        joke={j.joke}
+                        key={j.id}
+                        id={j.id}
+                        upVote={this.upVote}
+                        downVote={this.downVote}
+                    />)
+                    : <p>Loading ...</p>
+                }
+
             </div>
         );
     }
