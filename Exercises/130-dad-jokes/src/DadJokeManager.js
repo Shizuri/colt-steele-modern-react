@@ -54,8 +54,8 @@ class DadJokeManager extends Component {
     }
 
     upVote(jokeId) {
-        this.setState(st => ({
-            jokes: st.jokes.map(joke => {
+        this.setState(st => {
+            let newArray = st.jokes.map(joke => {
                 if (joke.id === jokeId) {
                     joke.points = joke.points + 1;
                     return joke;
@@ -63,12 +63,16 @@ class DadJokeManager extends Component {
                     return joke;
                 }
             })
-        }));
+            newArray.sort((a, b) => b.points - a.points);
+
+            return({
+            jokes: newArray
+        })});
     }
 
     downVote(jokeId) {
-        this.setState(st => ({
-            jokes: st.jokes.map(joke => {
+        this.setState(st => {
+            let newArray = st.jokes.map(joke => {
                 if (joke.id === jokeId) {
                     joke.points = joke.points - 1;
                     return joke;
@@ -76,7 +80,11 @@ class DadJokeManager extends Component {
                     return joke;
                 }
             })
-        }));
+            newArray.sort((a, b) => b.points - a.points);
+
+            return({
+            jokes: newArray
+        })});
     }
 
     render() {
