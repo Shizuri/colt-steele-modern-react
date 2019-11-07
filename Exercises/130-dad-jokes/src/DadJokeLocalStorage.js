@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joke from './Joke';
 import axios from 'axios';
+import './DadJokeLocalStorage.css';
 
 class DadJokeLocalStorage extends Component {
     constructor(props) {
@@ -133,22 +134,27 @@ class DadJokeLocalStorage extends Component {
 
     render() {
         return (
-            <div>
-                <button onClick={this.getTenJokes}>Add more jokes</button>
-                <button onClick={this.clearLocalStorage}>Clear Local Storage</button>
-                <button onClick={this.showAllLocalStorage}>showAllLocalStorage</button>
-                {this.state.loaded ?
-                    this.state.jokes.map(j => <Joke
-                        points={j.points}
-                        joke={j.joke}
-                        key={j.id}
-                        id={j.id}
-                        upVote={this.upVote}
-                        downVote={this.downVote}
-                    />)
-                    : <p>Loading ...</p>
-                }
+            <div className='DadJoke-container'>
+                <div className='DadJoke-buttons'>
+                    <h1>Dad Jokes</h1>
+                    <button onClick={this.getTenJokes}>Add more jokes</button>
+                    <button onClick={this.clearLocalStorage}>Clear Local Storage</button>
+                    <button onClick={this.showAllLocalStorage}>showAllLocalStorage</button>
+                </div>
 
+                <div className='DadJoke-jokes'>
+                    {this.state.loaded ?
+                        this.state.jokes.map(j => <Joke
+                            points={j.points}
+                            joke={j.joke}
+                            key={j.id}
+                            id={j.id}
+                            upVote={this.upVote}
+                            downVote={this.downVote}
+                        />)
+                        : <p>Loading ...</p>
+                    }
+                </div>
             </div>
         );
     }

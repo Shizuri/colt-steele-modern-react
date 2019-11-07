@@ -1,0 +1,21 @@
+.DadJoke-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.DadJoke-buttons {
+    background-color: mediumpurple;
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+}
+
+.DadJoke-jokes {
+    background-color: papayawhip;
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
