@@ -1,23 +1,57 @@
 .DadJoke-container {
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     /* justify-content: center; */
     /* height: 1000px; */
     /* width: 100%; */
 }
 
-.DadJoke-buttons {
+.DadJoke-left-panel {
     background-color: mediumpurple;
     display: flex;
+    align-items: center;
     flex-direction: column;
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.7);
+    width: 400px;
+    height: 800px;
 }
 
 .DadJoke-jokes {
     display: flex;
     flex-direction: column;
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.7);
-    width: 1000px;
-    height: 700px;
-    overflow-y: scroll;
+    width: 1200px;
+    height: 710px;
+    overflow-y: auto;
+}
+
+.DadJoke-laugh {
+    font-size: 150px;
+    text-shadow: 3px 10px 5px midnightblue;
+    margin-bottom: 80px;
+}
+
+.DadJokes-name {
+    color: white;
+    font-size: 60px;
+    margin-top: 100px;
+}
+
+.DadJokes-name-jokes {
+    font-family: 'Indie Flower', cursive;
+    font-weight: 100;
+}
+
+.DadJoke-button {
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    width: 220px;
+    height: 70px;
+    margin-bottom: 20px;
+    box-shadow: 2px 7px 5px midnightblue;
+    border: none;
+    border-radius: 35px;
+    outline: 0px;
+    background: repeating-linear-gradient(135deg, lightskyblue 0px, lightskyblue 110px, #ff3399 110px, #ff3399 2500px);
 }

@@ -135,11 +135,14 @@ class DadJokeLocalStorage extends Component {
     render() {
         return (
             <div className='DadJoke-container'>
-                <div className='DadJoke-buttons'>
-                    <h1>Dad Jokes</h1>
-                    <button onClick={this.getTenJokes}>Add more jokes</button>
-                    <button onClick={this.clearLocalStorage}>Clear Local Storage</button>
-                    <button onClick={this.showAllLocalStorage}>showAllLocalStorage</button>
+                <div className='DadJoke-left-panel'>
+                    <h1 className='DadJokes-name'>Dad <span className='DadJokes-name-jokes'>Jokes</span></h1>
+                    <span className='DadJoke-laugh' role='img' aria-label='Face With Tears Of Joy'>
+                        😂
+                    </span>
+                    <button onClick={this.getTenJokes} className='DadJoke-button'>Add more jokes</button>
+                    <button onClick={this.clearLocalStorage} className='DadJoke-button'>Clear Local Storage</button>
+                    <button onClick={this.showAllLocalStorage} className='DadJoke-button'>showAllLocalStorage</button>
                 </div>
 
                 <div className='DadJoke-jokes'>

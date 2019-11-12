@@ -7,6 +7,7 @@ class Joke extends Component {
         this.upVoteHandler = this.upVoteHandler.bind(this);
         this.downVoteHandler = this.downVoteHandler.bind(this);
         this.borderColor = this.borderColor.bind(this);
+        this.smileyFace = this.smileyFace.bind(this);
     }
 
     upVoteHandler() {
@@ -37,7 +38,25 @@ class Joke extends Component {
         } else if (this.props.points >= 14) {
             return 'TEAL';
         }
+    }
 
+    
+    smileyFace() {
+        if (this.props.points < 0) {
+            return '😒';
+        } else if (this.props.points === 0) {
+            return '😕';
+        } else if (this.props.points >= 1 && this.props.points <= 3) {
+            return '🙂';
+        } else if (this.props.points >= 4 && this.props.points <= 7) {
+            return '😀';
+        } else if (this.props.points >= 8 && this.props.points <= 10) {
+            return '😆';
+        } else if (this.props.points >= 11 && this.props.points <= 14) {
+            return '😂';
+        } else if (this.props.points >= 15) {
+            return '🤣';
+        }
     }
 
     render() {
@@ -47,7 +66,7 @@ class Joke extends Component {
                 <span className='Joke-points' style={{ borderColor: this.borderColor() }}>{this.props.points}</span>
                 <i onClick={this.downVoteHandler} className="fas fa-arrow-down Joke-vote-arrow-down"></i>
                 <span className='Joke-text'>{this.props.joke}</span>
-                <span className='Joke-smiley' role='img' aria-label='Smily face'>&#128522;</span>
+                <span className='Joke-smiley' role='img' aria-label='Smiley face'>{this.smileyFace()}</span>
             </div>
         );
     }

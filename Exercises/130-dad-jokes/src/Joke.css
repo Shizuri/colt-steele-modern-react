@@ -5,6 +5,7 @@
     background-color: floralwhite;
     /* height: 80px; */
     border-bottom: 1px solid GAINSBORO;
+    height: 70px;
 }
 
 .Joke-vote-arrow-up, .Joke-vote-arrow-down {
@@ -51,6 +52,7 @@
 
 .Joke-smiley {
     font-size: 45px;
+    text-shadow: 2px 7px 5px gray;
 }
 
 @keyframes up-arrow {
