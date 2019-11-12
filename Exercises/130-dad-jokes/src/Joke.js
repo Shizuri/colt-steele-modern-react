@@ -43,11 +43,11 @@ class Joke extends Component {
     render() {
         return (
             <div className='Joke-container'>
-                <i onClick={this.upVoteHandler} className="fas fa-arrow-up Joke-vote-arrow-up"></i>
+                <i onClick={this.upVoteHandler} className='fas fa-arrow-up Joke-vote-arrow-up'></i>
                 <span className='Joke-points' style={{ borderColor: this.borderColor() }}>{this.props.points}</span>
                 <i onClick={this.downVoteHandler} className="fas fa-arrow-down Joke-vote-arrow-down"></i>
                 <span className='Joke-text'>{this.props.joke}</span>
-                <span className='Joke-smily'>&#128522;</span>
+                <span className='Joke-smiley' role='img' aria-label='Smily face'>&#128522;</span>
             </div>
         );
     }
