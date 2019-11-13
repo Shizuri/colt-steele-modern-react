@@ -41,9 +41,13 @@ class DadJokeLocalStorage extends Component {
                 joke: joke,
                 points: 0
             };
-            const same = this.state.jokes.some(j => j.id === id);
+            const sameInState = this.state.jokes.some(j => j.id === id);
+            let sameInNewJokes = false;
+            if(newJokes.length !== 0){
+                sameInNewJokes = newJokes.some(j => j.id === id);
+            }
 
-            if (!same) {
+            if (!sameInState && !sameInNewJokes) {
                 newJokes.push(newJoke);
             } else {
                 i--;
@@ -161,7 +165,7 @@ class DadJokeLocalStorage extends Component {
                         }
                     </div>
                 </div>
-                : <p className='DadJoke-loading'>🤔</p>
+                : <p className='DadJoke-loading'><span role='img' aria-label='Loading - thinking emoji'>🤔</span></p>
                 }
             </div>
         );
