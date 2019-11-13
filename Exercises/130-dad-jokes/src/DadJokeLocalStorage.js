@@ -134,30 +134,35 @@ class DadJokeLocalStorage extends Component {
 
     render() {
         return (
-            <div className='DadJoke-container'>
-                <div className='DadJoke-left-panel'>
-                    <h1 className='DadJokes-name'>Dad <span className='DadJokes-name-jokes'>Jokes</span></h1>
-                    <span className='DadJoke-laugh' role='img' aria-label='Face With Tears Of Joy'>
-                        😂
+            <div>
+                {this.state.loaded ?
+                <div className='DadJoke-container'>
+                    <div className='DadJoke-left-panel'>
+                        <h1 className='DadJokes-name'>Dad <span className='DadJokes-name-jokes'>Jokes</span></h1>
+                        <span className='DadJoke-laugh' role='img' aria-label='Face With Tears Of Joy'>
+                            😂
                     </span>
-                    <button onClick={this.getTenJokes} className='DadJoke-button'>Add more jokes</button>
-                    <button onClick={this.clearLocalStorage} className='DadJoke-button'>Clear Local Storage</button>
-                    <button onClick={this.showAllLocalStorage} className='DadJoke-button'>showAllLocalStorage</button>
-                </div>
+                        <button onClick={this.getTenJokes} className='DadJoke-button'>Add more jokes</button>
+                        <button onClick={this.clearLocalStorage} className='DadJoke-button'>Clear Local Storage</button>
+                        <button onClick={this.showAllLocalStorage} className='DadJoke-button'>showAllLocalStorage</button>
+                    </div>
 
-                <div className='DadJoke-jokes'>
-                    {this.state.loaded ?
-                        this.state.jokes.map(j => <Joke
-                            points={j.points}
-                            joke={j.joke}
-                            key={j.id}
-                            id={j.id}
-                            upVote={this.upVote}
-                            downVote={this.downVote}
-                        />)
-                        : <p>Loading ...</p>
-                    }
+                    <div className='DadJoke-jokes'>
+                        {
+                            this.state.jokes.map(j => <Joke
+                                points={j.points}
+                                joke={j.joke}
+                                key={j.id}
+                                id={j.id}
+                                upVote={this.upVote}
+                                downVote={this.downVote}
+                            />)
+                            
+                        }
+                    </div>
                 </div>
+                : <p className='DadJoke-loading'>🤔</p>
+                }
             </div>
         );
     }
