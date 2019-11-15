@@ -1,0 +1,15 @@
+.VM-nav-active-link {
+    border: 1px solid purple;
+    background-color: seashell;
+}
+
+img {
+    height: 300px;
+}
+
+.VM-nav-bar {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: slategrey;
+    text-decoration: none;
+}
