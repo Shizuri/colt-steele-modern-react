@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Food from './Food';
 import Meal from './Meal';
+import Navbar from './Navbar';
 import FoodSearch from './FoodSearch';
 import { Route, Switch } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ function App() {
     return (
         <div className="App">
             {/* <FoodSearch /> */}
+            <Navbar />
             <Switch>
                 <Route exact path='/food/:name' render={(routeProps) => <Food authenticated={true} {...routeProps} />} />
 
