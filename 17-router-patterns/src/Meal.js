@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Food.css';
 
 class Meal extends Component {
     render() {
