@@ -5,14 +5,14 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                    <div>
-                        A discription of what a vending machine is.
+                <div className='row'>
+                    <div className='col'>
+                        <h1 className='display-4'>A discription of what a vending machine is.</h1>
                     </div>
-                    <div>
-                        <Link style={{ paddingRight: '10px' }} to='/soda'>Soda</Link>
-                        <Link style={{ paddingRight: '10px' }} to='/chips'>Chips</Link>
-                        <Link to='/sardines'>Sardines</Link>
+                    <div className='col display-4 nav flex-column'>
+                        <Link to='/soda' className='nav-link'>Soda</Link>
+                        <Link to='/chips' className='nav-link'>Chips</Link>
+                        <Link to='/sardines' className='nav-link'>Sardines</Link>
                     </div>
                 </div>
             </div>

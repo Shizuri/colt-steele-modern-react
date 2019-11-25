@@ -10,12 +10,28 @@ class VendingMachine extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <NavLink activeClassName='VM-active' to='/' exact>Home</NavLink>
-                    <NavLink activeClassName='VM-active' to='/soda' exact>Soda</NavLink>
-                    <NavLink activeClassName='VM-active' to='/chips' exact>Chips</NavLink>
-                    <NavLink activeClassName='VM-active' to='/sardines' exact>Sardines</NavLink>
+                <div className="navbar navbar-expand-md bg-dark navbar-dark">
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul className='navbar-nav'>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" activeClassName='VM-active' to='/' exact>Home</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link"  activeClassName='VM-active' to='/soda' exact>Soda</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link"  activeClassName='VM-active' to='/chips' exact>Chips</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link"  activeClassName='VM-active' to='/sardines' exact>Sardines</NavLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
 
                 <Switch>
                     <Route exact path='/' component={Home} />
