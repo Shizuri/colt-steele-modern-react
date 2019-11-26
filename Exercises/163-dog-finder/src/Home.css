@@ -1,0 +1,14 @@
+.Home-dog-picture {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.Home-dogs {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.Home-dog {
+    padding: 30px;
+}

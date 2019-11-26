@@ -47,7 +47,7 @@ class DogFinder extends Component {
 
                 <Switch>
                     <Route exact path='/dogs/:dogName' render={(routeProps) => <Dog dogs={this.props.dogs} {...routeProps} />} />
-                    <Route exact path='/dogs' component={Home} />
+                    <Route exact path='/dogs' render={(routeProps) => <Home dogs={this.props.dogs} {...routeProps} />} />
                     <Route render={() => <Redirect to='/dogs' />} />
                 </Switch>
             </div>
