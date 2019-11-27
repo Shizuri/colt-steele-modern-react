@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import RouterCalculator from './RouterCalculator';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      Router Calculator
-    </div>
-  );
+    return (
+        <div className="App">
+            <RouterCalculator />
+        </div>
+    );
 }
 
 export default App;
