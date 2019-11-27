@@ -1,4 +1,13 @@
 .Nav-active {
-    border: 1px solid purple;
-    background-color: snow;
+    /* border: 0px inset purple; */
+    border-style: inset;
+    background-color: mintcream;
+}
+
+.Nav-link {
+    padding: 0 10px;
+}
+
+.Nav {
+    margin: 20px 0;
 }
