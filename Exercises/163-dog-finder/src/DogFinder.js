@@ -41,12 +41,18 @@ class DogFinder extends Component {
     }
 
     render() {
+        const getDog = routeProps => {
+            let dogName = routeProps.match.params.dogName;
+            console.log('routeProps: ', routeProps);
+            console.log('dogName: ', dogName);
+            return <Dog {...routeProps} dogs={this.props.dogs} />
+        }
         return (
             <div>
                 <Nav dogs={this.props.dogs}/>
 
                 <Switch>
-                    <Route exact path='/dogs/:dogName' render={(routeProps) => <Dog dogs={this.props.dogs} {...routeProps} />} />
+                    <Route exact path='/dogs/:dogName' render={getDog} />
                     <Route exact path='/dogs' render={(routeProps) => <Home dogs={this.props.dogs} {...routeProps} />} />
                     <Route render={() => <Redirect to='/dogs' />} />
                 </Switch>
