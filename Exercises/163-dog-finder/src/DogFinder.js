@@ -43,8 +43,9 @@ class DogFinder extends Component {
     render() {
         const getDog = routeProps => {
             let dogName = routeProps.match.params.dogName;
-            console.log('routeProps: ', routeProps);
-            console.log('dogName: ', dogName);
+            // console.log('routeProps: ', routeProps);
+            // console.log('dogName: ', dogName);
+            //You can find a single dog here and pass it instead of all of the dogs
             return <Dog {...routeProps} dogs={this.props.dogs} />
         }
         return (
